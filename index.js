@@ -1,3 +1,9 @@
+const inputDate = document.querySelector("#bday-input");
+const showButton = document.querySelector("#show-btn");
+const outputPalindrome = document.querySelector("#output");
+
+
+
 //reverse a string
 function reverseString(str){
     var listOfChars = str.split('');
@@ -101,6 +107,8 @@ function getNextDate(date){
         }
 
     }
+
+    //check for rest of the months
     else{
         if(day>daysInMonth[month-1]){      //check if given day exceeds the max days of a month
             day = 1;
@@ -134,10 +142,29 @@ function getNextPalindromeDate(date){
     return [counter, nextDate];
 }
 
-var date = {
-    day : 09,
-    month : 12,
-    year : 2027
+function clickHandler(event){
+   var bdayStr = inputDate.value; //2021-09-08
+
+   if(bdayStr != ''){
+       var listOfDate = bdayStr.split('-');    // ['2021', '09', '16']
+        
+       var date = {                     // { day : '16', month : '09', year : '2021'}
+           day : Number(listOfDate[2]),
+           month : Number(listOfDate[1]),
+           year : Number(listOfDate[0])
+       };
+
+       var isPalindrome = checkPalindromeForAllDateFormats(date);
+
+       if(isPalindrome){
+           outputPalindrome.innerText = "Yay! Your birthday is a Palindrome!!"
+       }
+       else {
+           var [counter, nextDate] = getNextPalindromeDate(date);
+           outputPalindrome.innerText = "The next palindrome date is " + nextDate.day + "-" + nextDate.month + "-" + nextDate.year +". And you missed it by " + counter + " days..."
+       }
+       
+   }
 }
 
-console.log(getNextPalindromeDate(date));
+showButton.addEventListener('click', clickHandler )
