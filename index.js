@@ -157,11 +157,11 @@ function clickHandler(event){
        var isPalindrome = checkPalindromeForAllDateFormats(date);
 
        if(isPalindrome){
-           outputPalindrome.innerText = "Yay! Your birthday is a Palindrome!!"
+           outputPalindrome.innerText = "Yay! Your birthday is a Palindrome 🍻 🥂 🍾 "
        }
        else {
            var [counter, nextDate] = getNextPalindromeDate(date);
-           outputPalindrome.innerText = "The next palindrome date is " + nextDate.day + "-" + nextDate.month + "-" + nextDate.year +". And you missed it by " + counter + " days..."
+           outputPalindrome.innerText = "The next palindrome date is " + nextDate.day + "-" + nextDate.month + "-" + nextDate.year +".You missed it by " + counter + " days..."
        }
        
    }
